@@ -1,13 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.kapt)
-    alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.helloworld.data"
+    namespace = "com.helloworld.common"
     compileSdk = 34
 
     defaultConfig {
@@ -24,8 +21,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-
-            buildConfigField("String", "BASE_URL", "\"https://api.coincap.io/v2/\"")
         }
     }
     compileOptions {
@@ -35,18 +30,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        buildConfig = true
-    }
 }
 
 dependencies {
-    implementation(project(":core:common"))
-    implementation(project(":core:domain"))
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.bundles.ktor)
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
