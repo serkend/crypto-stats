@@ -9,3 +9,5 @@ data class Coin(
     val priceUsd: Double,
     val changePercent24Hr: Double,
 )
+
+
