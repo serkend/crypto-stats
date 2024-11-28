@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -41,34 +42,37 @@ fun CoinListItem(
     } else {
         Color.Black
     }
-    Row(
-        modifier = modifier.padding(16.dp).clickable { onClick(coinUi) },
+    Row (
+        modifier = modifier.fillMaxWidth().padding(16.dp).clickable { onClick(coinUi) },
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Icon(
-            imageVector = ImageVector.vectorResource(id = coinUi.iconRes),
-            contentDescription = coinUi.name,
-            tint = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.size(85.dp)
-        )
-        Column {
-            Text(
-                text = coinUi.symbol,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = contentColor
+        Row() {
+            Icon(
+                imageVector = ImageVector.vectorResource(id = coinUi.iconRes),
+                contentDescription = coinUi.name,
+                tint = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.size(85.dp)
             )
-            Text(
-                text = coinUi.name,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Light,
-                color = contentColor
-            )
+            Column(
+                modifier = modifier.padding(16.dp),
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = coinUi.symbol,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = contentColor
+                )
+                Text(
+                    text = coinUi.name,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Light,
+                    color = contentColor
+                )
+            }
         }
-        Column(
-            horizontalAlignment = Alignment.End
-        ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 text = "$ ${coinUi.priceUsd.formatted}",
                 fontSize = 16.sp,

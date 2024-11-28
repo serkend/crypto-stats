@@ -1,6 +1,6 @@
 package com.helloworld.common.utils
 
-enum class NetworkError: Error {
+enum class NetworkError {
     REQUEST_TIMEOUT,
     TOO_MANY_REQUESTS,
     NO_INTERNET,

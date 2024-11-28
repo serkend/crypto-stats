@@ -2,6 +2,8 @@ package com.helloworld.features.coinList.model
 
 import android.icu.text.NumberFormat
 import androidx.annotation.DrawableRes
+import com.helloworld.domain.model.Coin
+import com.helloworld.features.coinList.utils.getDrawableIdForCoin
 import java.util.Locale
 
 data class CoinUi(
@@ -14,6 +16,19 @@ data class CoinUi(
     val changePercent24Hr: DisplayableNumber,
     @DrawableRes val iconRes: Int
 )
+
+fun Coin.toCoinUi(): CoinUi {
+    return CoinUi(
+        id = id,
+        name = name,
+        symbol = symbol,
+        rank = rank,
+        priceUsd = priceUsd.toDisplayable(),
+        marketCapUsd = marketCapUsd.toDisplayable(),
+        changePercent24Hr = changePercent24Hr.toDisplayable(),
+        iconRes = getDrawableIdForCoin(symbol)
+    )
+}
 
 data class DisplayableNumber(
     val value: Double,

@@ -10,13 +10,18 @@ import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.helloworld.features.coinList.model.DisplayableNumber
+import com.helloworld.uikit.ui.theme.CryptoStatsTheme
 import com.helloworld.uikit.ui.theme.greenBackground
 
 @Composable
@@ -51,6 +56,25 @@ fun PriceChange(
             contentDescription = null,
             modifier = Modifier.size(20.dp),
             tint = contentColor
+        )
+        Text(
+            text = "${change.formatted} %",
+            color = contentColor,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Medium
+        )
+    }
+}
+
+@PreviewLightDark
+@Composable
+private fun PriceChangePreview() {
+    CryptoStatsTheme {
+        PriceChange(
+            change = DisplayableNumber(
+                value = 2.43,
+                formatted = "2.43"
+            )
         )
     }
 }

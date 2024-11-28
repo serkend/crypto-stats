@@ -20,8 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CryptoStatsTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    AdaptiveCoinListDetailPane(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
