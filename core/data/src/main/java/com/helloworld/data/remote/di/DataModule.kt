@@ -1,5 +1,7 @@
 package com.helloworld.data.remote.di
 
+import com.helloworld.data.BuildConfig
+import com.helloworld.data.remote.CryptoApi
 import com.helloworld.data.remote.repository.CryptoRepositoryImpl
 import com.helloworld.domain.repository.CryptoRepository
 import dagger.Module
@@ -18,6 +20,10 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -25,6 +31,7 @@ import javax.inject.Singleton
 object DataModule {
 
     @Provides
+    @Singleton
     fun provideHttpClient(): HttpClient {
         return HttpClient(CIO.create()) {
             install(Logging) {
@@ -45,5 +52,32 @@ object DataModule {
     }
 
     @Provides
-    fun provideCryptoRepository(httpClient: HttpClient): CryptoRepository = CryptoRepositoryImpl(httpClient)
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCryptoApi(retrofit: Retrofit): CryptoApi {
+        return retrofit.create(CryptoApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCryptoRepository(api: CryptoApi): CryptoRepository = CryptoRepositoryImpl(api)
 }

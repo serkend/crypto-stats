@@ -43,7 +43,7 @@ fun CoinListItem(
         Color.Black
     }
     Row (
-        modifier = modifier.fillMaxWidth().padding(16.dp).clickable { onClick(coinUi) },
+        modifier = modifier.padding(16.dp).clickable { onClick(coinUi) },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -55,7 +55,7 @@ fun CoinListItem(
                 modifier = Modifier.size(85.dp)
             )
             Column(
-                modifier = modifier.padding(16.dp),
+                modifier = Modifier.padding(16.dp),
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(

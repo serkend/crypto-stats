@@ -15,6 +15,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        buildConfigField("String", "BASE_URL", "\"https://api.coincap.io/v2/\"")
+
     }
 
     buildTypes {
@@ -24,8 +26,6 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-
-            buildConfigField("String", "BASE_URL", "\"https://api.coincap.io/v2/\"")
         }
     }
     compileOptions {
@@ -48,5 +48,5 @@ dependencies {
     implementation(libs.bundles.ktor)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-
+    implementation(libs.bundles.retrofit)
 }
