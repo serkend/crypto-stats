@@ -15,7 +15,6 @@ import com.helloworld.features.navigation.AdaptiveCoinListDetailPane
 import com.helloworld.uikit.ui.theme.CryptoStatsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

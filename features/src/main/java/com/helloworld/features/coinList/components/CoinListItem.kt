@@ -37,7 +37,7 @@ fun CoinListItem(
     modifier: Modifier,
     onClick: (CoinUi) -> Unit
 ) {
-    val contentColor = if(isSystemInDarkTheme()) {
+    val contentColor = if (isSystemInDarkTheme()) {
         Color.White
     } else {
         Color.Black
@@ -47,7 +47,7 @@ fun CoinListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Row() {
+        Row {
             Icon(
                 imageVector = ImageVector.vectorResource(id = coinUi.iconRes),
                 contentDescription = coinUi.name,

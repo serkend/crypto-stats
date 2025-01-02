@@ -6,8 +6,6 @@ import com.helloworld.data.remote.repository.CryptoRepositoryImpl
 import com.helloworld.domain.repository.CryptoRepository
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -27,8 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
-object DataModule {
+object NetworkModule {
 
     @Provides
     @Singleton

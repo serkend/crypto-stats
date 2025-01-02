@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kapt)
-    alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.compose.compiler)
 }
 
@@ -45,6 +44,6 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
     debugImplementation(libs.bundles.compose.debug)
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 }

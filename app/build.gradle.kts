@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kapt)
-    alias(libs.plugins.dagger.hilt.android)
 }
 
 android {
@@ -51,6 +50,8 @@ android {
 
 dependencies {
     implementation(project(":core:uikit"))
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
     implementation(project(":features"))
 
     implementation(libs.androidx.core.ktx)
@@ -62,12 +63,10 @@ dependencies {
 
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
-    implementation(libs.bundles.koin)
-
     implementation(libs.bundles.ktor)
 
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 
     testImplementation(libs.junit)
 

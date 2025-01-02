@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.kapt)
-    alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.kotlin.serialization)
 }
 
@@ -46,7 +45,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.bundles.ktor)
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
     implementation(libs.bundles.retrofit)
 }
